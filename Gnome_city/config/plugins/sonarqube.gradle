@@ -1,0 +1,64 @@
+/*
+ * Copyright (c) 2016 AXA Group Solutions.
+ *
+ * Licensed under the AXA Group Solutions License (the "License");
+ * you may not use this file except in compliance with the License.
+ * A copy of the License can be found in the LICENSE.TXT file distributed
+ * together with this file.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", project.SONAR_PROJECT_NAME
+        property "sonar.projectKey", project.SONAR_PROJECT_KEY
+        property "sonar.projectVersion", project.APPLICATION_VERSION_NAME
+        //property "sonar.host.url", "setup_on_your_user_gradle_properties"
+        //property "sonar.jdbc.url", "setup_on_your_user_gradle_properties"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.validationQuery", "select 1"
+        //property "sonar.jdbc.username", "setup_on_your_user_gradle_properties"
+        //property "sonar.jdbc.password", "setup_on_your_user_gradle_properties"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
+}
+
+/**
+ * Add here your exclusions and sourcesets.
+ */
+subprojects {
+    sonarqube {
+        properties {
+            property "sonar.sources", "src/main"
+            property "sample.sonar.tests", "src/androidTest, " + "src/test"
+
+            property "sonar.java.coveragePlugin", "jacoco"
+            property "sonar.jacoco.reportPath", "build/jacoco/testDebugUnitTest.exec"
+            property "sonar.junit.reportsPath", "build/test-results/debug"
+            // https://jira.sonarsource.com/browse/SONAR-4101
+            // http://stackoverflow.com/questions/37280289/sonarqube-with-both-androidtest-and-test-covarage
+            // property 'sonar.jacoco.itReportPath', "build/outputs/code-coverage/connected/coverage.ec"
+        }
+    }
+}
+
+/**
+ * Add here your projects to exclude from Sonar.
+ */
+if(project.findProject(":config")) {
+    project(":config") {
+        sonarqube {
+            println "Excluded 'config' project for Sonar runner."
+            skipProject = true;
+        }
+    }
+}
+
+

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Gnome_city</string>
+    <string name="Welcome">Welcome in BRASTLEWARK ;)</string>
+    <string name="boutton">Enter</string>
+    <string name="title_activity_filter">Filter</string>
+    <string name="filter">Filter</string>
+    <string name="list">List</string>
+    <string name="expl">You can choose to have acess to all informations or filter theses one</string>
+    <string name="Sentence">which profession do you want ?</string>
+    <string name="age_label">Age : %s</string>
+    <string name="weight_label">Weight : %s</string>
+    <string name="height_label">Height : %s</string>
+    <string name="hair_color_label">Hair color : %s</string>
+    <string name="professions_label">profession : %s</string>
+    <string name="friends_label">Friends : %s</string>
+    <string name="virgule_label">,</string>
+</resources>
