@@ -7,15 +7,6 @@ import java.util.ArrayList;
  */
 
 public class FilterFiltrage {
-    private final FilterPresenter presenter;
-
-    /**
-     * Initialize the presenter
-     * @param presenter
-     */
-    public FilterFiltrage (FilterPresenter presenter) {
-        this.presenter=presenter;
-    }
 
     /**
      * methode for the sorting
@@ -23,11 +14,11 @@ public class FilterFiltrage {
      */
     public void triArrayList(String work) {
         ArrayList<Habitant> nain=new ArrayList<>();
-        ArrayList<Habitant> gnomesAux = Singleton.getInstance().getGnomes();
-        int size =gnomesAux.size();
+        ArrayList<Habitant> gnomes = Singleton.getInstance().getGnomes();
+        int size =gnomes.size();
         for (int  i=0; i < size; i++) {
-            if (gnomesAux.get(i).getProfessions().contains(work)) {
-                nain.add(gnomesAux.get(i));
+            if (gnomes.get(i).getProfessions().contains(work)) {
+                nain.add(gnomes.get(i));
             }
         }
         Singleton.getInstance().setGnomesfilter(nain);

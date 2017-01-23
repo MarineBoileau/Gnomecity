@@ -7,7 +7,7 @@ package com.example.mboileau.gnome_city;
 public class FilterPresenter {
 
     private final FilterPresenter.View activity;
-    private final FilterFiltrage filtrer = new FilterFiltrage(this);
+    private final FilterFiltrage filtrer = new FilterFiltrage();
 
     /**
      * @param activity

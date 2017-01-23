@@ -144,4 +144,41 @@ public class Habitant implements Parcelable {
         }
     };
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Habitant habitant = (Habitant) o;
+
+        if (id != habitant.id) return false;
+        if (age != habitant.age) return false;
+        if (Double.compare(habitant.weight, weight) != 0) return false;
+        if (Double.compare(habitant.height, height) != 0) return false;
+        if (!name.equals(habitant.name)) return false;
+        if (!thumbnail.equals(habitant.thumbnail)) return false;
+        if (!haircolor.equals(habitant.haircolor)) return false;
+        if (!professions.equals(habitant.professions)) return false;
+        return friends.equals(habitant.friends);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + thumbnail.hashCode();
+        result = 31 * result + age;
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + haircolor.hashCode();
+        result = 31 * result + professions.hashCode();
+        result = 31 * result + friends.hashCode();
+        return result;
+    }
+
 }
